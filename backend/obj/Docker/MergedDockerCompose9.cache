@@ -1,0 +1,57 @@
+services:
+  backend:
+    build:
+      context: C:\Utvikling\smartcraft-hackathon-2022-gunnar\backend
+      dockerfile: backend/Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: backend
+      target: base
+    container_name: backend_1
+    depends_on:
+      mongo:
+        condition: service_started
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      Database__ConnectionString: mongodb://mongo:27017
+      NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages;/root/.nuget/fallbackpackages2
+    image: backend:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
+        --additionalProbingPath /root/.nuget/fallbackpackages --additionalProbingPath
+        /root/.nuget/fallbackpackages2  "/app/bin/Debug/net6.0/backend.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    ports:
+    - target: 80
+    tty: true
+    volumes:
+    - C:\Utvikling\smartcraft-hackathon-2022-gunnar\backend\backend:/app:rw
+    - C:\Users\Hlynur\vsdbg\vs2017u5:/remote_debugger:rw
+    - C:\Users\Hlynur\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\Hlynur\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Program Files (x86)\DevExpress 21.2\Components\Offline Packages:/root/.nuget/fallbackpackages:ro
+    - C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages:/root/.nuget/fallbackpackages2:ro
+    - C:\Users\Hlynur\.nuget\packages:/root/.nuget/packages:ro
+    - C:\Utvikling\smartcraft-hackathon-2022-gunnar\backend:/src:rw
+  mongo:
+    image: mongo
+    ports:
+    - published: 27017
+      target: 27017
+    restart: always
+  mongo-express:
+    depends_on:
+      mongo:
+        condition: service_started
+    image: mongo-express
+    ports:
+    - published: 8081
+      target: 8081
+    restart: always
+version: '3.4'
