@@ -16,19 +16,19 @@
           color="secondary"
           active-class="deep-purple--text text--accent-4"
         >
-          <v-list-item to="main" exact>
+          <v-list-item to="main" exact @click.stop="drawer = !drawer">
             <v-list-item-title>Main</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="scoreboard" exact>
+          <v-list-item to="scoreboard" exact @click.stop="drawer = !drawer">
             <v-list-item-title>Scoreboard</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="profile" exact>
+          <v-list-item to="profile" exact @click.stop="drawer = !drawer">
             <v-list-item-title>Profile</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="logout" exact>
+          <v-list-item to="logout" exact @click.stop="drawer = !drawer">
             <v-list-item-title>Log out</v-list-item-title>
           </v-list-item>
 
@@ -60,6 +60,6 @@ export default {
 
 .app {
   height: 100%;
-  margin: 56px;
+  margin-top: 56px;
 }
 </style>
