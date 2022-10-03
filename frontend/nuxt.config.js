@@ -9,6 +9,9 @@ export default {
   router: {
     base: '/smartcraft-hackathon-2022-gunnar/'
   },
+  generate: {
+    fallback: "404.html"
+  },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
