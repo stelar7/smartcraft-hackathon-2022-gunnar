@@ -1,13 +1,12 @@
 <template>
-    <div>
-        <div class="header">header</div>
+     <v-app>
+        <div class="header primary">header</div>
         <Nuxt />
-    </div>
+     </v-app>
 </template>
 
 <script>
 export default {
-
 }
 </script>
 
@@ -15,7 +14,6 @@ export default {
 .header {
     width: 100%;
     height: 50px;
-    background: red;
     display: flex;
     justify-content: center;
     align-items: center;
