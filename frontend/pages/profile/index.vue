@@ -1,5 +1,5 @@
 <template>
-  <div>test</div>
+  <div>this is a profile with no id</div>
 </template>
 
 <script>
