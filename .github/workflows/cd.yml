@@ -21,10 +21,12 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Install dependencies
+        working-directory: ./frontend
         run: npm install
 
       - name: Generate
-        run: npm generate generate
+        working-directory: ./frontend
+        run: npm generate
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
