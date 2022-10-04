@@ -40,7 +40,7 @@
                             scoreKey="thisMonthsScore"
                             :tabItem="1" />
                     </div>
-                    <ScoreTable scoreKey="thisMonthsScore" :scores="scores" />
+                    <ScoreTable scoreKey="thisMonthsScore" :scores="leaderboard" />
                 </div>
             </v-tab-item>
 
@@ -74,36 +74,6 @@
         data() {
             return {
                 leaderboard: null,
-                scores: [
-                    {
-                        name: "Emilia",
-                        score: 4321,
-                    },
-                    {
-                        name: "Steffen",
-                        score: 1234,
-                    },
-                    {
-                        name: "Hlynur",
-                        score: 1100,
-                    },
-                    {
-                        name: "Trond",
-                        score: 1000,
-                    },
-                    {
-                        name: "Martine",
-                        score: 950,
-                    },
-                    {
-                        name: "Stian",
-                        score: 900,
-                    },
-                    {
-                        name: "Kari",
-                        score: 800,
-                    },
-                ],
                 tab: "",
             }
         },
