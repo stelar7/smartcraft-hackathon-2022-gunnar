@@ -82,7 +82,7 @@ export default {
         },
         dark: {
           primary: '#009688',
-          secondary: '#adbd12',
+          secondary: '#cddc39',
           accent: '#ffc107',
           info: colors.teal.lighten1,
           warning: colors.amber.base,
