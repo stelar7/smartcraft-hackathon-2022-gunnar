@@ -13,7 +13,7 @@
         
         <div :class="[styleForStep, 'step']">
             <p class="podium-title">{{step}}</p>
-            <p class="podium-score">{{item.score}}</p>
+            <p class="podium-score">{{item[scoreKey]}}</p>
         </div>
     </v-container>
 </template>
@@ -36,6 +36,10 @@ export default {
     },
     tabItem: {
         type: Number,
+        required: true,
+    },
+    scoreKey: {
+        type: String,
         required: true,
     }
   },

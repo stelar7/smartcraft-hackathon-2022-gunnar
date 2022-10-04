@@ -14,14 +14,15 @@
                     <h1 class="text-center mb-8">Scoreboard of the Week</h1>
                     <div class="podium-container">
                         <PodiumStep 
-                            v-for="(score, index) in scores" 
+                            v-for="(score, index) in leaderboard" 
                             :key="score.name" 
+                            scoreKey="thisWeeksScore"
                             :item="score"
                             :step="index + 1" 
                             :tabItem="0" 
                             :tab="tab" />
                     </div>
-                    <ScoreTable :scores="scores" />
+                    <ScoreTable scoreKey="thisWeeksScore" :scores="leaderboard" />
                 </div>
             </v-tab-item>
 
@@ -31,14 +32,15 @@
                     <h1 class="text-center mb-8">Scoreboard of the Month</h1>
                     <div class="podium-container">
                         <PodiumStep 
-                            v-for="(score, index) in scores" 
+                            v-for="(score, index) in leaderboard" 
                             :key="score.name" 
                             :item="score" 
                             :step="index + 1" 
                             :tab="tab"
+                            scoreKey="thisMonthsScore"
                             :tabItem="1" />
                     </div>
-                    <ScoreTable :scores="scores" />
+                    <ScoreTable scoreKey="thisMonthsScore" :scores="scores" />
                 </div>
             </v-tab-item>
 
@@ -48,14 +50,15 @@
                     <h1 class="text-center mb-8">Scoreboard of All Time</h1>
                     <div class="podium-container">
                         <PodiumStep
-                            v-for="(score, index) in scores"
+                            v-for="(score, index) in leaderboard"
                             :key="score.name" 
                             :item="score" 
                             :step="index + 1" 
                             :tab="tab"
+                            scoreKey="overallScore"
                             :tabItem="2" />
                     </div>
-                    <ScoreTable :scores="scores" />
+                    <ScoreTable scoreKey="overallScore" :scores="leaderboard" />
                 </div>
             </v-tab-item>
         </v-tabs-items>
@@ -64,44 +67,55 @@
 </template>
 
 <script>
-export default {
-    name: 'ScoreboardPage',
-    data() {
-        return {
-            scores: [
-                {
-                    name: "Emilia",
-                    score: 4321,
-                },
-                {
-                    name: "Steffen",
-                    score: 1234,
-                },
-                {
-                    name: "Hlynur",
-                    score: 1100,
-                },
-                {
-                    name: "Trond",
-                    score: 1000,
-                },
-                {
-                    name: "Martine",
-                    score: 950,
-                },
-                {
-                    name: "Stian",
-                    score: 900,
-                },
-                {
-                    name: "Kari",
-                    score: 800,
-                },
-            ],
-            tab: "",
+    import { mapActions} from 'vuex';
+
+    export default {
+        name: 'ScoreboardPage',
+        data() {
+            return {
+                leaderboard: null,
+                scores: [
+                    {
+                        name: "Emilia",
+                        score: 4321,
+                    },
+                    {
+                        name: "Steffen",
+                        score: 1234,
+                    },
+                    {
+                        name: "Hlynur",
+                        score: 1100,
+                    },
+                    {
+                        name: "Trond",
+                        score: 1000,
+                    },
+                    {
+                        name: "Martine",
+                        score: 950,
+                    },
+                    {
+                        name: "Stian",
+                        score: 900,
+                    },
+                    {
+                        name: "Kari",
+                        score: 800,
+                    },
+                ],
+                tab: "",
+            }
+        },
+        methods: {
+            ...mapActions({
+                getLeaderboard: 'getLeaderboard',
+            }),
+        },
+        async created() {
+            this.leaderboard = await this.getLeaderboard("weekly")
         }
-    }
-};
+    };
 </script>
 
 <style lang="scss" scoped>
