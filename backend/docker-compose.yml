@@ -24,3 +24,5 @@ services:
       Database__ConnectionString: mongodb://mongo:27017
     depends_on:
       - mongo
+    ports:
+      - 8082:80
