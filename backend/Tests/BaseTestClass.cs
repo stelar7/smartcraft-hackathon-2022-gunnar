@@ -28,6 +28,12 @@ namespace Tests
             return responseDTO;
         }
 
+        protected HttpClient CreateClient()
+        {
+            var client = _factory.CreateClient();
+            return client;
+        }
+
         private static void TestResponse(HttpResponseMessage response)
         {
             var responseString = response.Content.ReadAsStringAsync().Result; //Used for debugging to see error message from service
