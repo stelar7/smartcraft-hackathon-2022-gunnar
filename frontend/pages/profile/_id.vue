@@ -159,7 +159,7 @@ export default {
       cursor: pointer;
       outline: dashed;
       outline-offset: 2px;
-      outline-color: black;
+      outline-color: var(--v-accent-base);
     }
 
     .nooutline {
@@ -173,8 +173,7 @@ export default {
 
     .two {
       background: black;
-      color: white;
-      outline-color: black;
+      color: var(--v-accent-base);
     }
     .three {
       background: hotpink;
