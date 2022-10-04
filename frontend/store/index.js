@@ -53,9 +53,9 @@ export const actions = {
   },
   async getLeaderboard({ state, commit }, time) {
     switch(time) {
-      case "yearly": return (await axios.put("http://localhost:8082/api/User/YearlyLeaders")).data;
-      case "monthly": return (await axios.put("http://localhost:8082/api/User/MonthlyLeaders")).data;
-      case "weekly": return (await axios.put("http://localhost:8082/api/User/WeeklyLeaders")).data;
+      case "yearly": return (await axios.get("http://localhost:8082/api/User/YearlyLeaders")).data;
+      case "monthly": return (await axios.get("http://localhost:8082/api/User/MonthlyLeaders")).data;
+      case "weekly": return (await axios.get("http://localhost:8082/api/User/WeeklyLeaders")).data;
     }
     throw new Error("Invalid variable, expected yearly, monthly, or weekly");
   },
