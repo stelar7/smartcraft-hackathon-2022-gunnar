@@ -13,8 +13,24 @@
       <div><span>Highest monthly:</span><span>245</span></div>
       <div><span>Highest yearly:</span><span>296</span></div>
     </div>
-    <div class="badges"></div>
-    <div class="themes"></div>
+    <v-divider />
+    <h1>Badges</h1>
+    <div class="badges">
+      <div>a</div>
+      <div>b</div>
+      <div>c</div>
+      <div>d</div>
+      <div>e</div>
+    </div>
+    <v-divider />
+    <h1>Themes</h1>
+    <div class="themes">
+      <div>a</div>
+      <div>b</div>
+      <div>c</div>
+      <div>d</div>
+      <div>e</div>
+    </div>
   </div>
 </template>
 
@@ -48,6 +64,10 @@ export default {
     gap: 20px;
   }
 
+  h1 {
+    place-self: center;
+  }
+
   .stats {
     display: flex;
     flex-direction: column;
@@ -57,7 +77,46 @@ export default {
     > div {
       display: flex;
       gap: 10px;
-      justify-content: flex-start;
+      justify-content: space-between;
+      span:first-child {
+        text-align: right;
+      }
+      > span {
+        width: 200px;
+      }
+    }
+  }
+
+  .badges {
+    display: grid;
+    place-content: center;
+    grid-auto-rows: 50px;
+    grid-template-columns: repeat(5, 50px);
+    gap: 20px;
+    
+    > div {
+      background: cyan;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+    }
+  }
+
+  .themes {
+    display: grid;
+    place-content: center;
+    grid-auto-rows: 50px;
+    grid-template-columns: repeat(5, 50px);
+    gap: 20px;
+    margin-bottom: 20px;
+    
+    > div {
+      background: cyan;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
     }
   }
 }
