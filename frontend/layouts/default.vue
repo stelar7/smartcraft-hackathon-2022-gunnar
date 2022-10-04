@@ -35,7 +35,7 @@
           color="secondary"
           active-class="deep-purple--text text--accent-4"
         >
-          <v-list-item :to="{name:'main'}" exact @click.stop="drawer = !drawer">
+          <v-list-item :to="{name:'index'}" exact @click.stop="drawer = !drawer">
             <v-list-item-title>Main</v-list-item-title>
           </v-list-item>
 
@@ -105,8 +105,5 @@ export default {
 .user {
   gap: 20px;
 }
-.icon {
-  width: 35px;
-  height: 35px;
-}
+.icon {}
 </style>
