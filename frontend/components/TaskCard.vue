@@ -19,7 +19,7 @@
         <v-spacer />
         <span>
           <fa-icon :icon="['fa', 'calendar']" class="" />
-          {{ task.startDate }}
+          {{ $moment(task.startDate).format('DD.MM.YYYY') }}
         </span>
       </div>
 
