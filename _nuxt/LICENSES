@@ -10,6 +10,8 @@
  * Released under the MIT License.
  */
 
+//! moment.js
+
 
 /*!
  * Vue.js v2.7.10
