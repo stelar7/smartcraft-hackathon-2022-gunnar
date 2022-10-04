@@ -61,5 +61,6 @@ export default {
 .app {
   height: 100%;
   margin-top: 56px;
+  background: #F6F4F2;
 }
 </style>
