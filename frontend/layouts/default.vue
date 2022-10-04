@@ -4,8 +4,13 @@
     <v-app-bar color="primary" class="header accent--text" app fixed short clipped-left>
       <v-app-bar-nav-icon color="accent" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-spacer />
-      <div class="user">
-        Username
+      <div class="user d-flex flex-row">
+        <div class=monthly-score>
+            {{ user.ThisMonthsScore }}
+        </div>
+        <div>
+          {{ user.Name }}
+        </div>
       </div>
     </v-app-bar>
 
@@ -42,17 +47,37 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
+
 export default {
   data: () => ({
     drawer: false,
     group: null,
   }),
 
+  computed: {
+    ...mapState({
+      user: (state) => state.user,
+      loadingUser: (state) => state.loading.user,
+    }),
+  },
+
   watch: {
     group() {
       this.drawer = false;
     },
   },
+  created() {
+    this.getUser();
+  },
+
+  methods: {
+    ...mapActions({
+      getUser: 'getUser',
+    }),
+  },
+
+
 };
 </script>
 
@@ -61,5 +86,8 @@ export default {
 .app {
   height: 100%;
   margin-top: 56px;
+}
+.user {
+  gap: 20px;
 }
 </style>
