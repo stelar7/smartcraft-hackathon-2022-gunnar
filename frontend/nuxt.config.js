@@ -79,6 +79,15 @@ export default {
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
           background: '#F6F4F2'
+        },
+        dark: {
+          primary: '#009688',
+          secondary: '#adbd12',
+          accent: '#ffc107',
+          info: colors.teal.lighten1,
+          warning: colors.amber.base,
+          error: colors.deepOrange.accent4,
+          success: colors.green.accent3,
         }
       }
     }

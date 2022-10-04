@@ -1,19 +1,19 @@
 <template>
   <div>
-    <section class="pa-4">
+    <v-container class="pa-4">
       <h3 class="mb-4">Current task</h3>
       <TaskCard :task="currentTask" color="secondary" text-color="primary" @select="selectTask"/>
-    </section>
+    </v-container>
 
-    <section class="pa-4">
+    <v-container class="pa-4">
       <h3 class="mb-4">Next</h3>
       <TaskCard :task="currentTask" color="grey" text-color="primary--text" @cancel="cancelTask"/>
-    </section>
+    </v-container>
 
-    <section class="pa-4">
+    <v-container class="pa-4">
       <h3 class="mb-4">Suggested</h3>
         <TaskCard v-for="task in tasks" :key="task.Id" :task="task" color="primary" text-color="secondary--text"/>
-    </section>
+    </v-container>
   </div>
 </template>
 
@@ -43,3 +43,6 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+
+</style>
