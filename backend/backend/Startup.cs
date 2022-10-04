@@ -69,6 +69,7 @@ namespace backend
 
             app.UseRouting();
             app.UseCors("corsapp");
+            app.UseCorsMiddleware();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
