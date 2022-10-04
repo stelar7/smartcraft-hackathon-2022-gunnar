@@ -173,7 +173,7 @@ export default {
 
   .badges {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 20px;
