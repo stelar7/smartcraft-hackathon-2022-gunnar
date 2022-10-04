@@ -8,7 +8,7 @@
     >
     <v-card-subtitle class="d-flex justify-space-between" v-if="index > 2">
       <div>{{ index + 1 + ". " + score.name }}</div>
-      <div>{{ score.score }}</div>
+      <div>{{ score[scoreKey] }}</div>
     </v-card-subtitle>
   </v-card>
   </div>
@@ -17,7 +17,17 @@
 <script>
 export default {
   name: 'ScoreTable',
-  props: ["scores"],
+  props: 
+  {
+    scores: {
+      type: Object,
+      required: true,
+    },
+    scoreKey: {
+      type: String,
+      required: true,
+    }
+  },
   computed: {
     headers() {
         return [
