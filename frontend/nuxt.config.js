@@ -64,7 +64,8 @@ export default {
     treeShake: true,
     theme: {
       options: {
-        customVariables: true
+        customVariables: true,
+        customProperties: true,
       },
       dark: false,
       themes: {

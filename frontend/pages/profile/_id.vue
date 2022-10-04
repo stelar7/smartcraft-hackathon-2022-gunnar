@@ -37,12 +37,6 @@
 <script>
 export default {
   name: 'UserProfile',
-  async asyncData({ $axios }) {
-    // $route.params.id
-    // Fetch any BE data here, then return it as an object to be merged into data();
-    const ip = await $axios.$get('https://icanhazip.com');
-    return { ip };
-  },
 };
 </script>
 
