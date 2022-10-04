@@ -6,9 +6,11 @@
       <v-spacer />
       <div class="user d-flex flex-row">
         <div class=monthly-score>
+            <fa-icon :icon="['fa', 'trophy']" class="amber--text"/>
             {{ user.ThisMonthsScore }}
         </div>
         <div>
+          <fa-icon :icon="['fa', 'user']" class=""/>
           {{ user.Name }}
         </div>
       </div>
