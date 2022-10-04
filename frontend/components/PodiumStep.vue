@@ -1,13 +1,21 @@
 <template>
-    <div :class="['step-container', 'step-container-' + step]" v-if="step < 4">
+    <v-container v-if="step < 4" :class="['step-container', 'step-container-' + step]">
+        <v-avatar
+            v-if="step === 1"
+            size="40"
+            class="mb-6"
+        >
+            <fa-icon :icon="['fa', 'trophy']" class="icon amber--text"/>
+        </v-avatar>
         <v-avatar color="primary" class="avatar" :size="124 - (step * 10)">
             {{item.name}}
         </v-avatar>
+        
         <div :class="[styleForStep, 'step']">
             <p class="podium-title">{{step}}</p>
             <p class="podium-score">{{item.score}}</p>
         </div>
-    </div>
+    </v-container>
 </template>
 
 <script>
@@ -21,13 +29,26 @@ export default {
     item: {
         type: Object,
         required: true,
+    },
+    tab: {
+        type: Number,
+        required: true,
+    },
+    tabItem: {
+        type: Number,
+        required: true,
+    }
+  },
+  data() {
+    return {
+        expand: false,
     }
   },
   computed: {
     styleForStep() {
         return "step" + this.step;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -36,6 +57,7 @@ export default {
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: flex-end;
         margin-bottom: 50px;
         width: 90%;
         max-width: 100%;
@@ -66,7 +88,6 @@ export default {
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        padding-top: 10px;
         box-sizing: border-box;
         border-radius: 5px 5px 0 0;
         .podium-title {
@@ -76,22 +97,22 @@ export default {
         }
     }
     .step1 {
-        height: 200px;
         background-color: #c91dc9;
+        height: 200px;
         .podium-title {
             color: #4e0b4e;
         }
     }
     .step2 {
-        height: 150px;
         background-color: #65d91c;
+        height: 150px;
         .podium-title {
             color: #2d610c;
         }
     }
     .step3 {
-        height: 100px;
         background-color: #ff9116;
+        height: 100px;
         .podium-title {
             color: #6c3900;
         }
