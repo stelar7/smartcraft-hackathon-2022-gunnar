@@ -42,8 +42,10 @@ export const actions = {
     const response = await axios.get("http://localhost:8082/api/Task/owner/" + userId);
     return response.data;
   },
-  async pickTask({ state, commit }, taskId) {
+  async reserveTask({ state, commit }, taskId) {
     await axios.put("http://localhost:8082/api/Task/Reserve/" + taskId);
+  },
+  async setAsCurrentTask({ state, commit }, taskId) {
     await axios.put("http://localhost:8082/api/Task/SetAsActive/" + taskId);
   },
   async completeTask({ state, commit }, taskId) {

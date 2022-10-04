@@ -91,6 +91,6 @@ export default {
 
 .mask .fill {
   clip: rect(0px, 75px, 150px, 0px);
-  background-color: #227ded;
+  background-color: var(--v-accent-base);
 }
 </style>
