@@ -30,7 +30,31 @@ export const actions = {
     const response = await axios.get("http://localhost:8082/api/User/" + state.currentUserId);
     return response.data;
   },
-  async getTasks({ state, commit }) {
-
+  async getAvailableTasks({ state, commit }) {
+    const response = await axios.get("http://localhost:8082/api/Task");
+    return response.data;
+  },
+  async getTask({ state, commit }, taskId) {
+    const response = await axios.get("http://localhost:8082/api/Task/" + taskId);
+    return response.data;
+  },
+  async getTasks({ state, commit }, userId) {
+    const response = await axios.get("http://localhost:8082/api/Task/owner/" + userId);
+    return response.data;
+  },
+  async pickTask({ state, commit }, taskId) {
+    await axios.put("http://localhost:8082/api/Task/Reserve/" + taskId);
+    await axios.put("http://localhost:8082/api/Task/SetAsActive/" + taskId);
+  },
+  async completeTask({ state, commit }, taskId) {
+    await axios.put("http://localhost:8082/api/Task/Complete/" + taskId);
+  },
+  async getLeaderboard({ state, commit }, time) {
+    switch(time) {
+      case "yearly": return (await axios.put("http://localhost:8082/api/User/YearlyLeaders")).data;
+      case "monthly": return (await axios.put("http://localhost:8082/api/User/MonthlyLeaders")).data;
+      case "weekly": return (await axios.put("http://localhost:8082/api/User/WeeklyLeaders")).data;
+    }
+    throw new Error("Invalid variable, expected yearly, monthly, or weekly");
   },
 };
