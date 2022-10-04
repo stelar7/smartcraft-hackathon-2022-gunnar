@@ -23,9 +23,9 @@
     <v-divider />
     <h1>Badges</h1>
     <div class="badges">
-      <div v-for="badge in user.achievements" :key="badge.name">
-        <fa-icon :icon="['fa', getIconFor(badge.name)]" />
-        {{ badge.name }}
+      <div v-for="badge in achievements" :key="badge">
+        <fa-icon :icon="['fa', getIconFor(badge)]" />
+        {{ badge }}
       </div>
     </div>
     <v-divider />
@@ -80,6 +80,9 @@ export default {
         .map((p) => p.toUpperCase())
         .map((p) => p.substring(0, 1))
         .join('');
+    },
+    achievements() {
+      return ['Speedy', 'Friendly', 'Night owl', 'Well oriented'];
     },
   },
   methods: {
