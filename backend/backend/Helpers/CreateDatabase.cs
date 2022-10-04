@@ -151,8 +151,19 @@ namespace backend.Helpers
                 State = States.New,
                 EstimatedTime = random.Next(1, 8) / 2m,
                 Id = Guid.NewGuid(),
+                PhoneNumber = CreatePhoneNumber()
             };
             return task;
+        }
+
+        private string CreatePhoneNumber()
+        {
+            string phoneNumber = "9";
+            for(int i = 0; i < 7; i++)
+            {
+                phoneNumber = phoneNumber + random.Next(0, 10);
+            }
+            return phoneNumber;
         }
 
         public int GenerateRandomTaskScore()
