@@ -4,27 +4,37 @@
       <span class="name">{{ user.name }}</span>
       <CircularProgress :value="67" :to="100">
         <v-avatar color="primary" class="secondary--text" size="124">
-          CJ
+          {{ userInitials }}
         </v-avatar>
       </CircularProgress>
-      <span class="score">{{user.overallScore}} Points!</span>
+      <span class="score">{{ user.overallScore }} Points!</span>
     </div>
     <div class="stats">
-      <div><span>Highest daily:</span><span>{{user.thisWeeksScore}}</span></div>
-      <div><span>Highest monthly:</span><span>{{user.thisMonthsScore}}</span></div>
-      <div><span>Highest yearly:</span><span>{{user.thisYearsScore}}</span></div>
+      <div>
+        <span>Highest daily:</span><span>{{ user.thisWeeksScore }}</span>
+      </div>
+      <div>
+        <span>Highest monthly:</span><span>{{ user.thisMonthsScore }}</span>
+      </div>
+      <div>
+        <span>Highest yearly:</span><span>{{ user.thisYearsScore }}</span>
+      </div>
     </div>
     <v-divider />
     <h1>Badges</h1>
     <div class="badges">
       <div v-for="badge in user.achievements" :key="badge.name">
-        {{badge.name}}
+        <fa-icon :icon="['fa', getIconFor(badge.name)]" />
+        {{ badge.name }}
       </div>
     </div>
     <v-divider />
     <h1>Themes</h1>
     <div class="themes">
-      <div :class="['one', { nooutline: !isDark }]" @click="toggleTheme(false)" />
+      <div
+        :class="['one', { nooutline: !isDark }]"
+        @click="toggleTheme(false)"
+      />
       <div :class="['two', { nooutline: isDark }]" @click="toggleTheme(true)" />
       <v-tooltip top>
         <template #activator="{ on, attrs }">
@@ -64,11 +74,44 @@ export default {
       isDark: (state) => state.isDarkTheme,
       user: (state) => state.user,
     }),
+    userInitials() {
+      return this.user.name
+        .split(' ')
+        .map((p) => p.toUpperCase())
+        .map((p) => p.substring(0, 1))
+        .join('');
+    },
   },
   methods: {
     ...mapMutations({
       changeTheme: 'changeTheme',
     }),
+    getIconFor(name) {
+      switch (name) {
+        case 'Speedy':
+          return 'truck-fast';
+        case 'Busy bee':
+          return 'bee';
+        case 'Magician':
+          return 'wand-magic-sparkles';
+        case 'Friendly':
+          return 'user-group';
+        case 'Trusted':
+          return 'heart';
+        case 'City life enthusiast':
+          return 'city';
+        case 'Night owl':
+          return 'crow';
+        case 'Country side lover':
+          return 'mountain-sun';
+        case 'Freshmen':
+          return 'sparkles';
+        case 'Well oriented':
+          return 'radio';
+        default:
+          return 'badge-check';
+      }
+    },
     toggleTheme(dark) {
       this.changeTheme(dark);
       this.$vuetify.theme.dark = dark;
