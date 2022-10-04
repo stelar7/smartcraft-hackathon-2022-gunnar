@@ -1,4 +1,7 @@
+
+import axios from "axios";
 export const state = () => ({
+  isDarkTheme: false,
   user: {
     Name: 'John Doe',
     ThisMonthsScore: 234562,
@@ -31,14 +34,18 @@ export const mutations = {
   SET_USER(state, user) {
     state.user = user;
   },
+  changeTheme(state, dark) {
+    state.isDarkTheme = dark;
+  }
 };
+
 
 export const actions = {
   async getUser({ state, commit }) {
-
+    const response = await axios.get("http://localhost:8082/api/User");
+    return response.data;
   },
   async getTasks({ state, commit }) {
 
   },
-
 };
