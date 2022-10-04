@@ -4,7 +4,7 @@ export const state = () => ({
   isDarkTheme: false,
   user: {
     Name: 'John Doe',
-    ThisMonthsScore: 234562,
+    ThisMonthsScore: 3500,
   },
   loading: {
     user: false,

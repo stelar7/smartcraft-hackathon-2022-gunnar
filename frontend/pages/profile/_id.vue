@@ -1,12 +1,13 @@
 <template>
   <div class="content">
     <div class="avatar">
-      Smith Jones
-      <CircularProgress :percent="50">
+      <span class="name">{{ user.Name }}</span>
+      <CircularProgress :value="67" :to="100">
         <v-avatar color="primary" class="secondary--text" size="124">
           CJ
         </v-avatar>
       </CircularProgress>
+      <span class="score">{{user.ThisMonthsScore}} Points!</span>
     </div>
     <div class="stats">
       <div><span>Highest daily:</span><span>123</span></div>
@@ -25,15 +26,32 @@
     <v-divider />
     <h1>Themes</h1>
     <div class="themes">
-      <div @click="toggleTheme(false)" :class="['one', { nooutline: !isDark }]">
-        a
-      </div>
-      <div @click="toggleTheme(true)" :class="['two', { nooutline: isDark }]">
-        b
-      </div>
-      <div class="three"><fa-icon :icon="['fa', 'lock']" /></div>
-      <div class="four"><fa-icon :icon="['fa', 'lock']" /></div>
-      <div class="five"><fa-icon :icon="['fa', 'lock']" /></div>
+      <div :class="['one', { nooutline: !isDark }]" @click="toggleTheme(false)" />
+      <div :class="['two', { nooutline: isDark }]" @click="toggleTheme(true)" />
+      <v-tooltip top>
+        <template #activator="{ on, attrs }">
+          <div class="three" v-bind="attrs" v-on="on">
+            <fa-icon :icon="['fa', 'lock']" />
+          </div>
+        </template>
+        90000 Points to unlock
+      </v-tooltip>
+      <v-tooltip top>
+        <template #activator="{ on, attrs }">
+          <div class="four" v-bind="attrs" v-on="on">
+            <fa-icon :icon="['fa', 'lock']" />
+          </div>
+        </template>
+        100000 Points to unlock
+      </v-tooltip>
+      <v-tooltip top>
+        <template #activator="{ on, attrs }">
+          <div class="five" v-bind="attrs" v-on="on">
+            <fa-icon :icon="['fa', 'lock']" />
+          </div>
+        </template>
+        110000 Points to unlock
+      </v-tooltip>
     </div>
   </div>
 </template>
@@ -46,6 +64,7 @@ export default {
   computed: {
     ...mapState({
       isDark: (state) => state.isDarkTheme,
+      user: (state) => state.user,
     }),
   },
   methods: {
@@ -76,6 +95,16 @@ export default {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+
+    .name {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .score {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
   }
 
   h1 {
@@ -137,7 +166,8 @@ export default {
     }
 
     .nooutline {
-      outline: none;
+      outline: solid;
+      cursor: default;
     }
 
     .one {
@@ -147,6 +177,7 @@ export default {
     .two {
       background: black;
       color: white;
+      outline-color: black;
     }
     .three {
       background: hotpink;
