@@ -14,7 +14,7 @@
         <span>Highest daily:</span><span>{{ user.thisWeeksScore }}</span>
       </div>
       <div>
-        <span>Highest monthly:</span><span>{{ user.thisMonthsScore }}</span>
+        <span>Highest monthly:</span><span>{{ user.bestMonthlyScore }}</span>
       </div>
       <div>
         <span>Highest yearly:</span><span>{{ user.thisYearsScore }}</span>
