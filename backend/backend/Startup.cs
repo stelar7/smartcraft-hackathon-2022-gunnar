@@ -38,6 +38,7 @@ namespace backend
             services.AddSingleton<IMongoDbContext, MongoDbContext>();
 
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddScoped<CreateDatabase>();
 
             // Following services are added as mocks by test framework instead 
