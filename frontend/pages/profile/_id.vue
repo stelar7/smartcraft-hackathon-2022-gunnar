@@ -90,7 +90,7 @@ export default {
       switch (name) {
         case 'Speedy':
           return 'truck-fast';
-        case 'Busy bee':
+        case 'Busy':
           return 'bee';
         case 'Magician':
           return 'wand-magic-sparkles';
@@ -105,7 +105,7 @@ export default {
         case 'Country side lover':
           return 'mountain-sun';
         case 'Freshmen':
-          return 'sparkles';
+          return 'plus';
         case 'Well oriented':
           return 'radio';
         default:
@@ -179,7 +179,7 @@ export default {
     gap: 20px;
 
     > div {
-      width: 100px;
+      width: 175px;
       height: 100px;
       display: grid;
       place-items: center;
