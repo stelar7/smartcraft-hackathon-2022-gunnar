@@ -9,15 +9,11 @@
       </CircularProgress>
     </div>
     <div class="stats">
-      <div class="values">
-        <span>Highest daily:</span><span>123</span>
-        <span>Highest monthly:</span><span>245</span>
-        <span>Highest yearly:</span><span>296</span>
-      </div>
+      <div><span>Highest daily:</span><span>123</span></div>
+      <div><span>Highest monthly:</span><span>245</span></div>
+      <div><span>Highest yearly:</span><span>296</span></div>
     </div>
-    <div class="badges">
-      <fa-icon :icon="['fas', 'user-secret']" />
-    </div>
+    <div class="badges"></div>
     <div class="themes"></div>
   </div>
 </template>
@@ -57,9 +53,11 @@ export default {
     flex-direction: column;
     align-items: center;
     text-align: start;
-    .values {
+
+    > div {
       display: flex;
-      align-items: flex-start;
+      gap: 10px;
+      justify-content: flex-start;
     }
   }
 }

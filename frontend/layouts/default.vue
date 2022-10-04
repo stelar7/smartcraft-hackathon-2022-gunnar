@@ -23,19 +23,19 @@
           color="secondary"
           active-class="deep-purple--text text--accent-4"
         >
-          <v-list-item to="main" exact @click.stop="drawer = !drawer">
+          <v-list-item :to="{name:'main'}" exact @click.stop="drawer = !drawer">
             <v-list-item-title>Main</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="scoreboard" exact @click.stop="drawer = !drawer">
+          <v-list-item :to="{name:'scoreboard'}" exact @click.stop="drawer = !drawer">
             <v-list-item-title>Scoreboard</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="profile" exact @click.stop="drawer = !drawer">
+          <v-list-item :to="{name:'profile-id', params: {id: 'user-id-goes-here'}}" exact @click.stop="drawer = !drawer">
             <v-list-item-title>Profile</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="logout" exact @click.stop="drawer = !drawer">
+          <v-list-item :to="{name:'logout'}" exact @click.stop="drawer = !drawer">
             <v-list-item-title>Log out</v-list-item-title>
           </v-list-item>
 

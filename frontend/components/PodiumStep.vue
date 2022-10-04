@@ -10,7 +10,12 @@
 <script>
 export default {
   name: 'PodiumStep',
-  props: ["step"],
+  props:  {
+    step: {
+        type: Number, 
+        required: true,
+    }
+  },
   computed: {
     styleForStep() {
         return "step" + this.step;
