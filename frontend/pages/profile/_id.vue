@@ -26,12 +26,8 @@
     <v-divider />
     <h1>Themes</h1>
     <div class="themes">
-      <div :class="['one', { nooutline: !isDark }]" @click="toggleTheme(false)">
-        a
-      </div>
-      <div :class="['two', { nooutline: isDark }]" @click="toggleTheme(true)">
-        b
-      </div>
+      <div :class="['one', { nooutline: !isDark }]" @click="toggleTheme(false)" />
+      <div :class="['two', { nooutline: isDark }]" @click="toggleTheme(true)" />
       <v-tooltip top>
         <template #activator="{ on, attrs }">
           <div class="three" v-bind="attrs" v-on="on">
@@ -170,7 +166,7 @@ export default {
     }
 
     .nooutline {
-      outline: none;
+      outline: solid;
       cursor: default;
     }
 
@@ -181,6 +177,7 @@ export default {
     .two {
       background: black;
       color: white;
+      outline-color: black;
     }
     .three {
       background: hotpink;
