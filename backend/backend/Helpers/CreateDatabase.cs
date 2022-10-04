@@ -151,7 +151,8 @@ namespace backend.Helpers
                 State = States.New,
                 EstimatedTime = random.Next(1, 8) / 2m,
                 Id = Guid.NewGuid(),
-                PhoneNumber = CreatePhoneNumber()
+                PhoneNumber = CreatePhoneNumber(),
+                StartDate = DateTime.Now.AddDays(random.Next(0, 5)),
             };
             return task;
         }

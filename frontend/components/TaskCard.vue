@@ -1,21 +1,25 @@
 <template>
   <v-card min-height="200" class="mb-6">
     <v-card-title :class="[color, textColor]">
-      {{ task.Title }}
+      {{ task.title }}
       <v-spacer />
         <fa-icon :icon="['fa', 'trophy']" class="icon amber--text mr-2"/>
-        {{ task.Score }}
+        {{ task.score }}
       <v-btn class="expand-button ml-2" icon @click="show = !show">
         <v-icon color="black">{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
       </v-btn>
     </v-card-title>
     <v-card-text class="pt-4">
       <div class="d-flex flex-row align-center py-1">
-        <span class="overline">{{ task.Address }}</span>
+        <span class="overline">
+          {{ task.address.street }}
+          {{ task.address.postalCode }}
+          {{ task.address.city }}
+          </span>
         <v-spacer />
         <span>
           <fa-icon :icon="['fa', 'calendar']" class="" />
-          {{ task.StartDate }}
+          {{ $moment(task.startDate).format('DD.MM.YYYY') }}
         </span>
       </div>
 
@@ -23,27 +27,27 @@
         <div v-show="show">
           <h4>Customer:</h4>
           <div class="d-flex flex-row py-1">
-            {{ task.Customer }}
+            {{ task.customer }}
             <v-spacer />
             <span>
               <fa-icon :icon="['fa', 'phone']" class="" />
-              {{ task.PhoneNumber }}
+              {{ task.phoneNumber }}
             </span>
           </div>
-          <div class="mt-2">{{ task.Description }}</div>
+          <div class="mt-2">{{ task.description }}</div>
         </div>
       </v-expand-transition>
     </v-card-text>
 
     <v-card-actions class="d-flex flex-row justify-end">
-      <v-btn color="info" @click="select">
+      <v-btn v-if="task.state === 0" color="info" @click="select">
         SELECT
       </v-btn>
-      <v-btn color="success" @click="finish">
-        FINISH
+      <v-btn v-if="task.state === 1" color="warning" @click="start">
+        START
       </v-btn>
-      <v-btn color="error" @click="cancel">
-        CANCEL
+      <v-btn v-if="task.state === 2" color="success" @click="finish">
+        FINISH
       </v-btn>
     </v-card-actions>
   </v-card>
@@ -76,11 +80,11 @@ export default {
     select(){
       this.$emit('select', this.task)
     },
+    start(){
+      this.$emit('start', this.task)
+    },
     finish(){
       this.$emit('finish', this.task)
-    },
-    cancel(){
-      this.$emit('cancel', this.task)
     },
   },
 };
