@@ -55,6 +55,7 @@ export default {
       reserveTask: 'reserveTask',
       activateTask: 'activateTask',
       completeTask: 'completeTask',
+      getUser: 'getUser',
     }),
     async selectTask(task){
       await this.reserveTask({taskId: task.id, userId: this.user.id});
@@ -67,6 +68,7 @@ export default {
     async finishTask(task){
       await this.completeTask(task.id);
       this.getTasks(this.user.id);
+      this.getUser();
     },
   },
 };
