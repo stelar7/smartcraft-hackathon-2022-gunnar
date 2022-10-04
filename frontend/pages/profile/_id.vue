@@ -25,23 +25,37 @@
     <v-divider />
     <h1>Themes</h1>
     <div class="themes">
-      <div>a</div>
-      <div>b</div>
-      <div>c</div>
-      <div>d</div>
-      <div>e</div>
+      <div @click="toggleTheme(false)" :class="['one', { nooutline: !isDark }]">
+        a
+      </div>
+      <div @click="toggleTheme(true)" :class="['two', { nooutline: isDark }]">
+        b
+      </div>
+      <div class="three"><fa-icon :icon="['fa', 'lock']" /></div>
+      <div class="four"><fa-icon :icon="['fa', 'lock']" /></div>
+      <div class="five"><fa-icon :icon="['fa', 'lock']" /></div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapMutations, mapState } from 'vuex';
+
 export default {
   name: 'UserProfile',
-  async asyncData({ $axios }) {
-    // $route.params.id
-    // Fetch any BE data here, then return it as an object to be merged into data();
-    const ip = await $axios.$get('https://icanhazip.com');
-    return { ip };
+  computed: {
+    ...mapState({
+      isDark: (state) => state.isDarkTheme,
+    }),
+  },
+  methods: {
+    ...mapMutations({
+      changeTheme: 'changeTheme',
+    }),
+    toggleTheme(dark) {
+      this.changeTheme(dark);
+      this.$vuetify.theme.dark = dark;
+    },
   },
 };
 </script>
@@ -93,7 +107,7 @@ export default {
     grid-auto-rows: 50px;
     grid-template-columns: repeat(5, 50px);
     gap: 20px;
-    
+
     > div {
       background: cyan;
       width: 100%;
@@ -110,13 +124,38 @@ export default {
     grid-template-columns: repeat(5, 50px);
     gap: 20px;
     margin-bottom: 20px;
-    
+
     > div {
-      background: cyan;
       width: 100%;
       height: 100%;
       display: grid;
       place-items: center;
+      cursor: pointer;
+      outline: dashed;
+      outline-offset: 2px;
+      outline-color: black;
+    }
+
+    .nooutline {
+      outline: none;
+    }
+
+    .one {
+      background: wheat;
+    }
+
+    .two {
+      background: black;
+      color: white;
+    }
+    .three {
+      background: hotpink;
+    }
+    .four {
+      background: yellow;
+    }
+    .five {
+      background: purple;
     }
   }
 }

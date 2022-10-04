@@ -64,13 +64,14 @@ export default {
     treeShake: true,
     theme: {
       options: {
-        customVariables: true
+        customVariables: true,
+        customProperties: true,
       },
       dark: false,
       themes: {
         light: {
           primary: '#0f0c24',
-          accent: '#c52c5f',
+          accent: '#FF1868',
           secondary: '#c91dc9',
           info: colors.teal.lighten1,
           warning: colors.amber.base,
