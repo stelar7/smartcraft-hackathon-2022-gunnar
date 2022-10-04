@@ -10,7 +10,7 @@ export default {
     base: '/smartcraft-hackathon-2022-gunnar/'
   },
   generate: {
-    fallback: "404.html"
+    fallback: '404.html'
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -30,10 +30,10 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['@fortawesome/fontawesome-svg-core/styles.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ['~/plugins/fontawesome.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -64,7 +64,7 @@ export default {
     treeShake: true,
     theme: {
       options: {
-        customVariables: true,
+        customVariables: true
       },
       dark: false,
       themes: {

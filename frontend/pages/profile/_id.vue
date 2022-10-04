@@ -15,7 +15,9 @@
         <span>Highest yearly:</span><span>296</span>
       </div>
     </div>
-    <div class="badges"></div>
+    <div class="badges">
+      <fa-icon :icon="['fas', 'user-secret']" />
+    </div>
     <div class="themes"></div>
   </div>
 </template>
