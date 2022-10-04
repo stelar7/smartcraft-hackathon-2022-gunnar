@@ -7,7 +7,8 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
   router: {
-    base: '/smartcraft-hackathon-2022-gunnar/'
+    base: '/smartcraft-hackathon-2022-gunnar/',
+    middleware: ["loadThemes"],
   },
   generate: {
     fallback: '404.html'
@@ -33,7 +34,7 @@ export default {
   css: ['@fortawesome/fontawesome-svg-core/styles.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/fontawesome.js'],
+  plugins: ['~/plugins/fontawesome.js', '~/plugins/persistentstate.client.js' ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -64,19 +65,20 @@ export default {
     treeShake: true,
     theme: {
       options: {
-        customVariables: true
+        customVariables: true,
+        customProperties: true
       },
       dark: false,
       themes: {
         light: {
           primary: '#0f0c24',
-          accent: '#c52c5f',
+          accent: '#FF1868',
           secondary: '#c91dc9',
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
-          background: "#F6F4F2",
+          background: '#F6F4F2'
         }
       }
     }

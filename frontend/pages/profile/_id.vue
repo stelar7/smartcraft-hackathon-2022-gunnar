@@ -1,12 +1,13 @@
 <template>
   <div class="content">
     <div class="avatar">
-      Smith Jones
-      <CircularProgress :percent="50">
+      <span class="name">{{ user.Name }}</span>
+      <CircularProgress :value="67" :to="100">
         <v-avatar color="primary" class="secondary--text" size="124">
           CJ
         </v-avatar>
       </CircularProgress>
+      <span class="score">{{user.ThisMonthsScore}} Points!</span>
     </div>
     <div class="stats">
       <div><span>Highest daily:</span><span>123</span></div>
@@ -25,23 +26,55 @@
     <v-divider />
     <h1>Themes</h1>
     <div class="themes">
-      <div>a</div>
-      <div>b</div>
-      <div>c</div>
-      <div>d</div>
-      <div>e</div>
+      <div :class="['one', { nooutline: !isDark }]" @click="toggleTheme(false)" />
+      <div :class="['two', { nooutline: isDark }]" @click="toggleTheme(true)" />
+      <v-tooltip top>
+        <template #activator="{ on, attrs }">
+          <div class="three" v-bind="attrs" v-on="on">
+            <fa-icon :icon="['fa', 'lock']" />
+          </div>
+        </template>
+        90000 Points to unlock
+      </v-tooltip>
+      <v-tooltip top>
+        <template #activator="{ on, attrs }">
+          <div class="four" v-bind="attrs" v-on="on">
+            <fa-icon :icon="['fa', 'lock']" />
+          </div>
+        </template>
+        100000 Points to unlock
+      </v-tooltip>
+      <v-tooltip top>
+        <template #activator="{ on, attrs }">
+          <div class="five" v-bind="attrs" v-on="on">
+            <fa-icon :icon="['fa', 'lock']" />
+          </div>
+        </template>
+        110000 Points to unlock
+      </v-tooltip>
     </div>
   </div>
 </template>
 
 <script>
+import { mapMutations, mapState } from 'vuex';
+
 export default {
   name: 'UserProfile',
-  async asyncData({ $axios }) {
-    // $route.params.id
-    // Fetch any BE data here, then return it as an object to be merged into data();
-    const ip = await $axios.$get('https://icanhazip.com');
-    return { ip };
+  computed: {
+    ...mapState({
+      isDark: (state) => state.isDarkTheme,
+      user: (state) => state.user,
+    }),
+  },
+  methods: {
+    ...mapMutations({
+      changeTheme: 'changeTheme',
+    }),
+    toggleTheme(dark) {
+      this.changeTheme(dark);
+      this.$vuetify.theme.dark = dark;
+    },
   },
 };
 </script>
@@ -62,6 +95,16 @@ export default {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+
+    .name {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .score {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
   }
 
   h1 {
@@ -93,7 +136,7 @@ export default {
     grid-auto-rows: 50px;
     grid-template-columns: repeat(5, 50px);
     gap: 20px;
-    
+
     > div {
       background: cyan;
       width: 100%;
@@ -110,13 +153,40 @@ export default {
     grid-template-columns: repeat(5, 50px);
     gap: 20px;
     margin-bottom: 20px;
-    
+
     > div {
-      background: cyan;
       width: 100%;
       height: 100%;
       display: grid;
       place-items: center;
+      cursor: pointer;
+      outline: dashed;
+      outline-offset: 2px;
+      outline-color: black;
+    }
+
+    .nooutline {
+      outline: solid;
+      cursor: default;
+    }
+
+    .one {
+      background: wheat;
+    }
+
+    .two {
+      background: black;
+      color: white;
+      outline-color: black;
+    }
+    .three {
+      background: hotpink;
+    }
+    .four {
+      background: yellow;
+    }
+    .five {
+      background: purple;
     }
   }
 }

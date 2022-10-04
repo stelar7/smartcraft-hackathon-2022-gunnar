@@ -7,7 +7,8 @@ namespace backend.Controllers
     {
         protected ActionResult<T> CreateOkResponse<T>(T payload)
         {
-            return Ok(payload);
+            ActionResult result = Ok(payload);
+            return result;
         }
 
         protected async Task<ActionResult<T>> HandleRequest<T>(Func<Task<T>> action) where T : class

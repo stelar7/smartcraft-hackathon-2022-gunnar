@@ -46,6 +46,10 @@ namespace backend
             {
             }
 
+            services.AddCors(p => p.AddPolicy("corsapp", builder =>
+            {
+                builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+            }));
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
@@ -62,8 +66,9 @@ namespace backend
                 app.UseSwaggerUI();
             }
 
-            app.UseRouting();
 
+            app.UseRouting();
+            app.UseCors("corsapp");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

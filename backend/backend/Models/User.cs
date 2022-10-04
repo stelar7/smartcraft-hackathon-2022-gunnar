@@ -17,9 +17,5 @@
         public DateTime BestMonthlyScoreDate { get; set; }
         public Achievement[] Achievements { get; set; }
         public Guid ActiveTask { get; set; }
-
-
-        public Task CurrentTask { get;}
-        public Task[] ActiveTasks { get; }
     }
 }

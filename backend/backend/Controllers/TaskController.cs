@@ -1,4 +1,5 @@
 ﻿using backend.Repositories;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers
@@ -24,7 +25,7 @@ namespace backend.Controllers
         {
             return await HandleRequest(async () => await repository.GetRecordsOwnedBy(Guid.Parse(ownerid)));
         }
-
+        [EnableCors("corsapp")]
         [HttpGet]
         public async Task<ActionResult<List<Models.Task>>> GetAvailableTasks()
         {
