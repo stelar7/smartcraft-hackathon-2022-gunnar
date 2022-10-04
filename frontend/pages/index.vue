@@ -1,20 +1,20 @@
 <template>
-  <v-container>
-    <h3>Current task</h3>
-    <v-card min-height="200" class="mb-6">
-      <v-card-title class="secondary primary--text">
-        {{ currentTask.Title }}
-        {{ currentTask.Score }}
-      </v-card-title>
-      <v-card-text></v-card-text>
-    </v-card>
+  <div>
+    <section class="pa-4">
+      <h3 class="mb-4">Current task</h3>
+      <TaskCard :task="currentTask" color="secondary" text-color="primary" @select="selectTask"/>
+    </section>
 
-    <h3 class="mt-6">Next</h3>
-    <v-card min-height="200">
-      <v-card-title class="secondary"> Fix some other pipe </v-card-title>
-      <v-card-text></v-card-text>
-    </v-card>
-  </v-container>
+    <section class="pa-4">
+      <h3 class="mb-4">Next</h3>
+      <TaskCard :task="currentTask" color="grey" text-color="primary--text" @cancel="cancelTask"/>
+    </section>
+
+    <section class="pa-4">
+      <h3 class="mb-4">Suggested</h3>
+        <TaskCard v-for="task in tasks" :key="task.Id" :task="task" color="primary" text-color="secondary--text"/>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -26,6 +26,7 @@ export default {
       user: (state) => state.user,
       loadingUser: (state) => state.loading.user,
       currentTask: (state) => state.currentTask,
+      tasks: (state) => state.tasks,
     }),
   },
   watch: {},
@@ -36,7 +37,9 @@ export default {
     ...mapActions({
       getTasks: 'getTasks',
     }),
+    selectTask(task){
+      console.log(task)
+    },
   },
 };
 </script>
-
