@@ -82,8 +82,41 @@ namespace backend.Helpers
                 ThisMonthsScore = GenerateRandomNumberOfTimes(20),
                 ThisWeeksScore = GenerateRandomNumberOfTimes(5),
                 ThisYearsScore = GenerateRandomNumberOfTimes(200),
+                OverallScore = GenerateRandomNumberOfTimes(1000),
+                Achievements = CreateAchievements(),
             };
         }
+
+        private Achievement[] CreateAchievements()
+        {
+            List<Achievement> achievements = new List<Achievement>();
+            int limit = random.Next(0,6);
+            for (int i = 0; i < limit; i++)
+            {
+                Achievement achievement = new Achievement()
+                {
+                    Name = achievementNames[random.Next(0, 10)],
+                    DateAchieved = DateTime.UtcNow.AddDays(random.Next(-300, 0)),
+                    Type = (AchievementType)random.Next(0, 3),
+                };
+                achievements.Add(achievement);
+            }
+            return achievements.ToArray();
+        }
+
+        List<string> achievementNames = new List<string>()
+        {
+            "Speedy",
+            "Busy",
+            "Magician",
+            "Friendly",
+            "Trusted",
+            "City life enthusiast",
+            "Night owl",
+            "Country side lover",
+            "Freshmen",
+            "Well oriented"
+        };
 
         private Models.Task CreateTask(string title, string description, string customer, string street, int postCode, string city)
         {
