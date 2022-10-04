@@ -6,11 +6,23 @@
       <v-spacer />
       <div class="user d-flex flex-row">
         <div class=monthly-score>
-            <fa-icon :icon="['fa', 'trophy']" class="amber--text"/>
+          <v-avatar
+            color="primary"
+            size="40"
+          >
+            <fa-icon :icon="['fa', 'trophy']" class="icon amber--text"/>
+          </v-avatar>
+
             {{ user.ThisMonthsScore }}
         </div>
         <div>
-          <fa-icon :icon="['fa', 'user']" class=""/>
+          <v-avatar
+            color="accent"
+            size="40"
+          >
+            <fa-icon :icon="['fa', 'user']" class="icon primary--text"/>
+          </v-avatar>
+
           {{ user.Name }}
         </div>
       </div>
@@ -23,7 +35,7 @@
           color="secondary"
           active-class="deep-purple--text text--accent-4"
         >
-          <v-list-item :to="{name:'main'}" exact @click.stop="drawer = !drawer">
+          <v-list-item :to="{name:'index'}" exact @click.stop="drawer = !drawer">
             <v-list-item-title>Main</v-list-item-title>
           </v-list-item>
 
@@ -92,5 +104,9 @@ export default {
 }
 .user {
   gap: 20px;
+}
+.icon {
+  width: 35px;
+  height: 35px;
 }
 </style>

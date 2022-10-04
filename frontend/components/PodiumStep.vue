@@ -1,6 +1,8 @@
 <template>
     <div :class="['step-container', 'step-container-' + step]" v-if="step < 4">
-        <p class="avatar">{{item.name}}</p>
+        <v-avatar color="primary" class="avatar" :size="124 - (step * 10)">
+            {{item.name}}
+        </v-avatar>
         <div :class="[styleForStep, 'step']">
             <p class="podium-title">{{step}}</p>
             <p class="podium-score">{{item.score}}</p>
@@ -40,12 +42,21 @@ export default {
         padding: 0 5px;
         &-1 {
             order: 2;
+            .avatar {
+                font-size: 22px;
+            }
         }
         &-2 {
             order: 1;
+            .avatar {
+                font-size: 20px;
+            }
         }
         &-3 {
             order: 3;
+            .avatar {
+                font-size: 18px;
+            }
         }
     }
     .step {
@@ -86,12 +97,7 @@ export default {
         }
     }
     .avatar {
-        width: 20vw;
-        height: 20vw;
-        border-radius: 100%;
-        background-color: #eee;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        margin-bottom: 24px;
+        color: #FFF;
     }
 </style>

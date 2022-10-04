@@ -71,7 +71,7 @@ export default {
     margin-left: 12px;
     color: #1e51dc;
     position: absolute;
-    z-index: 100;
+    z-index: 1;
     font-weight: 700;
     font-size: 2em;
   }
