@@ -1,0 +1,32 @@
+services:
+  backend:
+    build:
+      context: C:\Utvikling\smartcraft-hackathon-2022-gunnar\backend
+      dockerfile: backend/Dockerfile
+    depends_on:
+      mongo:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      Database__ConnectionString: mongodb://mongo:27017
+    image: backend
+    ports:
+    - published: 8082
+      target: 80
+    - target: 80
+  mongo:
+    image: mongo
+    ports:
+    - published: 27017
+      target: 27017
+    restart: always
+  mongo-express:
+    depends_on:
+      mongo:
+        condition: service_started
+    image: mongo-express
+    ports:
+    - published: 8081
+      target: 8081
+    restart: always
+version: '3.4'
