@@ -1,8 +1,9 @@
 ﻿namespace backend.Models
 {
-    public class Task
+    public class Task : IBaseModel
     {
         public Guid Id { get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
         public string Customer { get; set; }
         public string PhoneNumber { get; set; }

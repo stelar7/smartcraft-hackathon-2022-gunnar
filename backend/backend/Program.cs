@@ -7,6 +7,7 @@ using (var scope = host.Services.CreateScope())
 {
     CreateDatabase createDatabase = scope.ServiceProvider.GetRequiredService<CreateDatabase>();
     IMongoDbContext dbContext = scope.ServiceProvider.GetRequiredService<IMongoDbContext>();
+    dbContext.DropDatabase("Hackathon");
     createDatabase.InitializeDatabase().Wait();
 }
 host.Run();
