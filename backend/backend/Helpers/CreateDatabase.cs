@@ -91,12 +91,11 @@ namespace backend.Helpers
         {
             List<Achievement> achievements = new List<Achievement>();
             int limit = random.Next(0, 6);
-            List<int> rNumbers = CreateRandomAchievemntNumbers(limit);
             for (int i = 0; i < limit; i++)
             {
                 Achievement achievement = new Achievement()
                 {
-                    Name = achievementNames[rNumbers[limit-1]],
+                    Name = achievementNames[random.Next(0, 10)],
                     DateAchieved = DateTime.UtcNow.AddDays(random.Next(-300, 0)),
                     Type = (AchievementType)random.Next(0, 3),
                 };
@@ -105,20 +104,6 @@ namespace backend.Helpers
             return achievements.ToArray();
         }
 
-        private List<int> CreateRandomAchievemntNumbers(int limit)
-        {
-            List<int> rNumbers = new List<int>();
-            for (int i = 0; i < limit; i++)
-            {
-                int rn = random.Next(0, 10);
-                while (rNumbers.Contains(rn))
-                {
-                    rn = random.Next(0, 10);
-                }
-                rNumbers.Add(rn);
-            }
-            return rNumbers;
-        }
 
         List<string> achievementNames = new List<string>()
         {
