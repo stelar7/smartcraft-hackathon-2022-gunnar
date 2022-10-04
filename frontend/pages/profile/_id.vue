@@ -179,7 +179,7 @@ export default {
     gap: 20px;
 
     > div {
-      width: 100px;
+      width: 175px;
       height: 100px;
       display: grid;
       place-items: center;
