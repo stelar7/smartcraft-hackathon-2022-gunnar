@@ -13,11 +13,18 @@ export const state = () => ({
   currentTask: {
   },
   tasks: [],
+  userTasks: [],
 });
 
 export const mutations = {
   SET_USER(state, user) {
     state.user = user;
+  },
+  SET_TASKS(state, tasks) {
+    state.tasks = tasks;
+  },
+  SET_USER_TASKS(state, tasks) {
+    state.userTasks = tasks;
   },
   changeTheme(state, dark) {
     state.isDarkTheme = dark;
@@ -32,7 +39,7 @@ export const actions = {
   },
   async getAvailableTasks({ state, commit }) {
     const response = await axios.get("http://localhost:8082/api/Task");
-    return response.data;
+    commit("SET_TASKS", response.data);
   },
   async getTask({ state, commit }, taskId) {
     const response = await axios.get("http://localhost:8082/api/Task/" + taskId);
@@ -40,12 +47,12 @@ export const actions = {
   },
   async getTasks({ state, commit }, userId) {
     const response = await axios.get("http://localhost:8082/api/Task/owner/" + userId);
-    return response.data;
+    commit("SET_USER_TASKS", response.data);
   },
-  async reserveTask({ state, commit }, taskId) {
-    await axios.put("http://localhost:8082/api/Task/Reserve/" + taskId);
+  async reserveTask({ state, commit }, {taskId, userId}) {
+    await axios.put("http://localhost:8082/api/Task/Reserve/" + taskId + '?userId='+ userId);
   },
-  async setAsCurrentTask({ state, commit }, taskId) {
+  async activateTask({ state, commit }, taskId) {
     await axios.put("http://localhost:8082/api/Task/SetAsActive/" + taskId);
   },
   async completeTask({ state, commit }, taskId) {
