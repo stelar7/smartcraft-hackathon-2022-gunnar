@@ -1,4 +1,5 @@
 ﻿using backend.Helpers;
+using backend.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -46,6 +47,30 @@ namespace Tests
                 Assert.DoesNotContain(210, list);
                 Assert.DoesNotContain(40, list);
 
+            }           
+        }
+
+        [Fact]
+        public async System.Threading.Tasks.Task CreateUsers_Created20Users_Success()
+        {
+            using (var scope = _factory.Services.CreateScope())
+            {
+                IUserRepository repository = scope.ServiceProvider.GetRequiredService<IUserRepository>();
+                var users = await repository.GetRecords();
+                Assert.NotEmpty(users);
+                Assert.Equal(21, users.Count);
+            }
+        }
+
+        [Fact]
+        public async System.Threading.Tasks.Task CreateTasks_Created20Users_Success()
+        {
+            using (var scope = _factory.Services.CreateScope())
+            {
+                ITaskRepository repository = scope.ServiceProvider.GetRequiredService<ITaskRepository>();
+                var tasks = await repository.GetRecords();
+                Assert.NotEmpty(tasks);
+                Assert.Equal(10, tasks.Count);
             }
         }
     }

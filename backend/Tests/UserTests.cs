@@ -15,17 +15,7 @@ namespace Tests
 
         }
 
-        [Fact]
-        public async System.Threading.Tasks.Task CreateUsers_Created20Users_Success()
-        {
-            using (var scope = _factory.Services.CreateScope())
-            {
-                IUserRepository repository = scope.ServiceProvider.GetRequiredService<IUserRepository>();
-                var users = await repository.GetRecords();
-                Assert.NotEmpty(users);
-                Assert.Equal(21, users.Count);
-            }
-        }
+
 
         [Fact]
         public async System.Threading.Tasks.Task GetUser_Gunnar_Success()
