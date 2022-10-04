@@ -1,12 +1,17 @@
 <template>
   <div class="circle-wrap">
     <div class="circle">
-      <div class="mask full" :style="transformStyle">
-        <div class="fill" :style="transformStyle"></div>
-      </div>
-      <div class="mask half">
-        <div class="fill" :style="transformStyle"></div>
-      </div>
+      <v-tooltip top>
+        <template #activator="{ on, attrs }">
+          <div class="mask full" :style="transformStyle"  v-bind="attrs" v-on="on">
+            <div class="fill" :style="transformStyle"  v-bind="attrs" v-on="on"></div>
+          </div>
+          <div class="mask half"  v-bind="attrs" v-on="on">
+            <div class="fill" :style="transformStyle"  v-bind="attrs" v-on="on"></div>
+          </div>
+        </template>
+        {{ to - value}} Points to next unlock
+      </v-tooltip>
       <div class="inside-circle"><slot /></div>
     </div>
   </div>
@@ -16,7 +21,11 @@
 export default {
   name: 'CircularProgress',
   props: {
-    percent: {
+    to: {
+      type: Number,
+      default: 0,
+    },
+    value: {
       type: Number,
       default: 0,
     },
@@ -26,6 +35,9 @@ export default {
     },
   },
   computed: {
+    percent() {
+      return (this.value / this.to) * 100;
+    },
     circlePercent() {
       return (180 / 100) * this.percent;
     },
