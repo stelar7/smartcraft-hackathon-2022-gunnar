@@ -6,7 +6,7 @@
         <fa-icon :icon="['fa', 'trophy']" class="icon amber--text mr-2"/>
         {{ task.Score }}
       <v-btn class="expand-button ml-2" icon @click="show = !show">
-        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+        <v-icon color="black">{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
       </v-btn>
     </v-card-title>
     <v-card-text class="pt-4">

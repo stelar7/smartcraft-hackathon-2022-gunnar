@@ -33,7 +33,7 @@
         <v-list-item-group
           v-model="group"
           color="secondary"
-          active-class="deep-purple--text text--accent-4"
+          active-class=" text--accent-4"
         >
           <v-list-item :to="{name:'index'}" exact @click.stop="drawer = !drawer">
             <v-list-item-title>Main</v-list-item-title>
@@ -100,7 +100,6 @@ export default {
 .app {
   height: 100%;
   margin-top: 56px;
-  background: #F6F4F2;
 }
 .user {
   gap: 20px;
