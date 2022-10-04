@@ -6,7 +6,7 @@
             <v-tab key="monthly">Monthly</v-tab>
             <v-tab key="alltime">All Time</v-tab>
         </v-tabs>
-        <v-tabs-items v-model="tab" style="background: #F6F4F2" class="pa-4 mt-12">
+        <v-tabs-items v-model="tab" class="pa-4 mt-12">
 
             <!-- WEEKLY -->
             <v-tab-item key="weekly">
