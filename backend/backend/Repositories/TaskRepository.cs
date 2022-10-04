@@ -40,6 +40,7 @@ namespace backend.Repositories
             Models.Task task = await GetRecord(id);
             task.State = Models.States.Completed;
             await _userRepository.UpdateScores(task.OwnerId.Value, task.Score);
+            await _userRepository.SetActiveTask(task.OwnerId.Value, Guid.Parse("00000000-0000-0000-0000-000000000000"));
             return await UpsertRecord(id, task);
 
         }
