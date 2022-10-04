@@ -55,7 +55,9 @@ namespace backend.Repositories
         public async Task<Models.Task> SetAsActive(Guid id)
         {
             Models.Task task = await GetRecord(id);
+            task.State |= Models.States.Active;
             await _userRepository.SetActiveTask(task.OwnerId.Value, task.Id);
+            await UpsertRecord(id, task);
             return task;
         }
     }
