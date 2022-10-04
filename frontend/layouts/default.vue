@@ -13,7 +13,7 @@
             <fa-icon :icon="['fa', 'trophy']" class="icon amber--text"/>
           </v-avatar>
 
-            {{ user.ThisMonthsScore }}
+            {{ user.thisMonthsScore }}
         </div>
         <div>
           <v-avatar
@@ -23,7 +23,7 @@
             <fa-icon :icon="['fa', 'user']" class="icon primary--text"/>
           </v-avatar>
 
-          {{ user.Name }}
+          {{ user.name }}
         </div>
       </div>
     </v-app-bar>

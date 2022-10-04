@@ -28,7 +28,7 @@ export const mutations = {
 export const actions = {
   async getUser({ state, commit }) {
     const response = await axios.get("http://localhost:8082/api/User/" + state.currentUserId);
-    return response.data;
+    commit("SET_USER", response.data);
   },
   async getAvailableTasks({ state, commit }) {
     const response = await axios.get("http://localhost:8082/api/Task");
