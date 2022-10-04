@@ -44,7 +44,8 @@ export default {
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    '@nuxtjs/moment'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -79,6 +80,15 @@ export default {
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
           background: '#F6F4F2'
+        },
+        dark: {
+          primary: '#009688',
+          secondary: '#cddc39',
+          accent: '#ffc107',
+          info: colors.teal.lighten1,
+          warning: colors.amber.base,
+          error: colors.deepOrange.accent4,
+          success: colors.green.accent3,
         }
       }
     }

@@ -1,27 +1,25 @@
 <template>
   <div class="content">
     <div class="avatar">
-      <span class="name">{{ user.Name }}</span>
+      <span class="name">{{ user.name }}</span>
       <CircularProgress :value="67" :to="100">
         <v-avatar color="primary" class="secondary--text" size="124">
           CJ
         </v-avatar>
       </CircularProgress>
-      <span class="score">{{user.ThisMonthsScore}} Points!</span>
+      <span class="score">{{user.overallScore}} Points!</span>
     </div>
     <div class="stats">
-      <div><span>Highest daily:</span><span>123</span></div>
-      <div><span>Highest monthly:</span><span>245</span></div>
-      <div><span>Highest yearly:</span><span>296</span></div>
+      <div><span>Highest daily:</span><span>{{user.thisWeeksScore}}</span></div>
+      <div><span>Highest monthly:</span><span>{{user.thisMonthsScore}}</span></div>
+      <div><span>Highest yearly:</span><span>{{user.thisYearsScore}}</span></div>
     </div>
     <v-divider />
     <h1>Badges</h1>
     <div class="badges">
-      <div>a</div>
-      <div>b</div>
-      <div>c</div>
-      <div>d</div>
-      <div>e</div>
+      <div v-for="badge in user.achievements" :key="badge.name">
+        {{badge.name}}
+      </div>
     </div>
     <v-divider />
     <h1>Themes</h1>
@@ -131,16 +129,15 @@ export default {
   }
 
   .badges {
-    display: grid;
-    place-content: center;
-    grid-auto-rows: 50px;
-    grid-template-columns: repeat(5, 50px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 20px;
 
     > div {
-      background: cyan;
-      width: 100%;
-      height: 100%;
+      width: 100px;
+      height: 100px;
       display: grid;
       place-items: center;
     }
@@ -162,7 +159,7 @@ export default {
       cursor: pointer;
       outline: dashed;
       outline-offset: 2px;
-      outline-color: black;
+      outline-color: var(--v-accent-base);
     }
 
     .nooutline {
@@ -176,8 +173,7 @@ export default {
 
     .two {
       background: black;
-      color: white;
-      outline-color: black;
+      color: var(--v-accent-base);
     }
     .three {
       background: hotpink;
