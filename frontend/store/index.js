@@ -1,88 +1,18 @@
 
 import axios from "axios";
+
+
 export const state = () => ({
   isDarkTheme: false,
+  currentUserId: "11111111-1111-1111-1111-111111111111",
   user: {
-    Name: 'John Doe',
-    ThisMonthsScore: 3500,
   },
   loading: {
     user: false,
   },
   currentTask: {
-    Id: 1,
-    Title: 'Very important task',
-    Description: 'You need to quickly fix that leaking pipe in the office or there will be poop flood',
-    Customer: 'Jone Hop',
-    PhoneNumber: '77442634',
-    Address: 'Some street 2, 2322 City',
-    State: '',
-    Score: 135,
-    Deleted: '',
-    OwnerId: '',
-    EstimatedTime: '',
-    StartDate: '05.10.2022',
-    CreatedBy: '',
-    CreatedDate: '',
-    UpdatedBy: '',
-    UpdatedDate: '',
   },
-  tasks: [
-    {
-      Id: 3,
-      Title: 'Very important task 3',
-      Description: 'You need to quickly fix that leaking pipe in the office or there will be poop flood',
-      Customer: 'Jone Hop',
-      PhoneNumber: '77442634',
-      Address: 'Some street 2, 2322 City',
-      State: '',
-      Score: 135,
-      Deleted: '',
-      OwnerId: '',
-      EstimatedTime: '',
-      StartDate: '05.10.2022',
-      CreatedBy: '',
-      CreatedDate: '',
-      UpdatedBy: '',
-      UpdatedDate: '',
-    },
-    {
-      Id: 4,
-      Title: 'Very important task 4',
-      Description: 'You need to quickly fix that leaking pipe in the office or there will be poop flood',
-      Customer: 'Jone Hop',
-      PhoneNumber: '77442634',
-      Address: 'Some street 2, 2322 City',
-      State: '',
-      Score: 135,
-      Deleted: '',
-      OwnerId: '',
-      EstimatedTime: '',
-      StartDate: '05.10.2022',
-      CreatedBy: '',
-      CreatedDate: '',
-      UpdatedBy: '',
-      UpdatedDate: '',
-    },
-    {
-      Id: 5,
-      Title: 'Very important task 5',
-      Description: 'You need to quickly fix that leaking pipe in the office or there will be poop flood',
-      Customer: 'Jone Hop',
-      PhoneNumber: '77442634',
-      Address: 'Some street 2, 2322 City',
-      State: '',
-      Score: 135,
-      Deleted: '',
-      OwnerId: '',
-      EstimatedTime: '',
-      StartDate: '05.10.2022',
-      CreatedBy: '',
-      CreatedDate: '',
-      UpdatedBy: '',
-      UpdatedDate: '',
-    },
-  ],
+  tasks: [],
 });
 
 export const mutations = {
@@ -97,7 +27,7 @@ export const mutations = {
 
 export const actions = {
   async getUser({ state, commit }) {
-    const response = await axios.get("http://localhost:8082/api/User");
+    const response = await axios.get("http://localhost:8082/api/User/" + state.currentUserId);
     return response.data;
   },
   async getTasks({ state, commit }) {
